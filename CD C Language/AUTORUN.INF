@@ -1,0 +1,12 @@
+[autorun]
+ShellExecute=start.html
+icon=C1.ico
+label=Programming in C
+shell\open = &Open
+shell\open\command = startup.exe start.html
+shell\install = &Install
+shell\install\command = startup.exe start.html
+shell\explore = E&xplore
+shell\explore\command = startup.exe start.html
+shell\readme = &Read Me
+shell\readme\command = notepad.exe Readme.txt   
