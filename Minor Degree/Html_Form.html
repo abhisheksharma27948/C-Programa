@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Form Example</title>
+</head>
+
+<body>
+
+	<form  name="myForm" onsubmit="return validateForm()" method="post">
+
+		<legend>Registration Form</legend><br><br>
+
+		<label for="name">User Name : </label> <input type="text" name="name"><br><br>
+
+		<label for="password">Password : </label> <input type="password" name="password"><br><br>
+
+		<label for="email">Email : </label> <input type="email" name="email"><br><br>
+
+		<label for="dob">Date of Birth:</label>
+		<input type="date" id="dob" name="dob" required><br><br>
+
+		<input type="submit" value="Submit">
+
+	</form>
+
+	<script>
+		const dobInput = document.getElementById('dob');
+		dobInput.addEventListener('input', (event) => {
+			const dob = new Date(event.target.value);
+			const age = Math.floor((Date.now() - dob) / (365.25 * 24 * 60 * 60 * 1000));
+			if (age < 18 || age > 55) {
+				dobInput.setCustomValidity('You must be between 18 and 55 years old.');
+			} else {
+				dobInput.setCustomValidity('');
+			}
+		});
+
+		function validateForm() {
+			  const nameInput = document.forms["myForm"]["name"].value;
+			  const emailInput = document.forms["myForm"]["email"].value;
+			  const passwordInput = document.forms["myForm"]["password"].value;
+			  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+			  
+			  if (nameInput === "") {
+				alert("Name must be filled out");
+				return false;
+			  }
+			  
+			  if (emailInput === "") {
+				alert("Email must be filled out");
+				return false;
+			  }
+			  
+			  if (!emailRegex.test(emailInput)) {
+				alert("Invalid email format");
+				return false;
+			  }
+
+			  if (nameInput === "") {
+				alert("Name must be filled out");
+				return false;
+			  }
+			  
+			  if (passwordInput === "") {
+				alert("Password must be filled out");
+				return false;
+			  }
+			  
+			  if (!passwordRegex.test(passwordInput)) {
+				alert("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number");
+				return false;
+			  }
+			  
+			  return true;
+			}
+		  
+	</script>
+
+</body>
+
+</html>
